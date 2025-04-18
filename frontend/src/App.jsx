@@ -1,7 +1,7 @@
 import React from 'react';
-import Home from './components/home';
-import Login from './components/login';
-import Signup from './components/signup';
+import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import PageNotFound from './components/PageNotFound';
 import  {Toaster } from 'react-hot-toast';
