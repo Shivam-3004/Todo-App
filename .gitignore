@@ -1,0 +1,69 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# React specific
+*.cache/
+public/static/
+
+# Angular specific
+.angular/
+
+# Svelte specific
+.svelte-kit/
+
+# Next.js specific
+.next/
+
+# Nuxt.js specific
+.nuxt/
+
+# Vue.js specific
+*.vuepress/
+.vuepress/dist/
+
+# Python backend (if applicable)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Django specific
+*.sqlite3
+db.sqlite3
+
+# Flask specific
+instance/
+*.pyc
+
+# Miscellaneous
+*.bak
+*.tmp
+*.old
