@@ -9,11 +9,12 @@ function Login() { // login page component
   const [email, setEmail] = useState("");
 
   const navigateTo = useNavigate();
+  const BASE_URL = `http://${import.meta.env.VITE_BACKEND_URL}`;
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post("http://localhost:4001/user/login", {
+      const { data } = await axios.post(`${BASE_URL}/user/login`, {
         email,
         password,
       }, {
@@ -34,13 +35,11 @@ function Login() { // login page component
     }
   };
 
-
   return (
     <div className='flex justify-center items-center h-screen bg-gray-200'>
       <div className='w-full max-w-md p-10 bg-white rounded-lg shadow-lg '>
         <h1 className='text-center text-2xl font-semibold mb-5 '>Login</h1>
         <form onSubmit={handleRegister}>
-          
           {/* email */}
           <div className='mb-4 '>
             <label className='block mb-2 font-semibold ' htmlFor="">Email</label>
@@ -57,9 +56,7 @@ function Login() { // login page component
         </form>
       </div>
     </div>
-
-
   )
 }
 
-export default Login
+export default Login;

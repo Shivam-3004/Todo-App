@@ -10,11 +10,12 @@ function signup() { // signup page component
   const [email, setEmail] = useState("");
 
   const navigateTo = useNavigate();
+  const BASE_URL = `http://${import.meta.env.VITE_BACKEND_URL}`;
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post("http://localhost:4001/user/signup", {
+      const { data } = await axios.post(`${BASE_URL}/user/signup`, {
         username,
         email,
         password,
@@ -36,7 +37,6 @@ function signup() { // signup page component
       toast.error(error.response.data.error || "Something went wrong");
     }
   };
-
 
   return (
     <div className='flex justify-center items-center h-screen bg-gray-200'>
@@ -64,9 +64,7 @@ function signup() { // signup page component
         </form>
       </div>
     </div>
-
-
   )
 }
 
-export default signup
+export default signup;

@@ -3,17 +3,18 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function Home() { //home page component
+function Home() { // home page component
     const [todos, setTodos] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [newTodo, setNewTodo] = useState("");
+    const BASE_URL = `http://${import.meta.env.VITE_BACKEND_URL}`;
 
     useEffect(() => {
         const fetchTodos = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get("http://localhost:4001/todo/fetch", {
+                const response = await axios.get(`${BASE_URL}/todo/fetch`, {
                     withCredentials: true,
                     headers: {
                         "Content-Type": "application/json",
@@ -34,7 +35,7 @@ function Home() { //home page component
         if (!newTodo) return;
         try {
             const response = await axios.post(
-                "http://localhost:4001/todo/create",
+                `${BASE_URL}/todo/create`,
                 { text: newTodo, completed: false },
                 { withCredentials: true }
             );
@@ -49,7 +50,7 @@ function Home() { //home page component
         const todo = todos.find((t) => t._id === id);
         try {
             const response = await axios.put(
-                `http://localhost:4001/todo/update/${id}`,
+                `${BASE_URL}/todo/update/${id}`,
                 { ...todo, completed: !todo.completed },
                 { withCredentials: true }
             );
@@ -61,7 +62,7 @@ function Home() { //home page component
 
     const todoDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:4001/todo/delete/${id}`, {
+            await axios.delete(`${BASE_URL}/todo/delete/${id}`, {
                 withCredentials: true,
             });
             setTodos(todos.filter((t) => t._id !== id));
@@ -72,7 +73,7 @@ function Home() { //home page component
     const navigateTo = useNavigate();
     const logout = async () => {
         try {
-            await axios.get("http://localhost:4001/user/logout", {
+            await axios.get(`${BASE_URL}/user/logout`, {
                 withCredentials: true,
                 headers: {
                     "Content-Type": "application/json",
@@ -121,10 +122,7 @@ function Home() { //home page component
                                     onChange={() => todoStatus(todo._id)}
                                     className="mr-2"
                                 />
-                                <span
-                                    className={`${todo.completed ? "line-through text-gray-800 font-semibold" : ""
-                                        }`}
-                                >
+                                <span className={`${todo.completed ? "line-through text-gray-800 font-semibold" : ""}`}>
                                     {todo.text}
                                 </span>
                             </div>
@@ -139,7 +137,7 @@ function Home() { //home page component
                 </ul>
             }
             <p className="mt-4 text-center text-sm text-gray-700">{remainingTodos} remaining Todos</p>
-            <button onClick={() => logout()} className="mt-6 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-800 duration-500 mx-auto block">
+            <button onClick={logout} className="mt-6 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-800 duration-500 mx-auto block">
                 Logout
             </button>
         </div>
