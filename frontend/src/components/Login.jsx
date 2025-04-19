@@ -30,7 +30,7 @@ function Login() {
       setPassword("");
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.error || "Something went wrong");
+      toast.error(error.response.data.error || "User Registration Failed");
     }
   };
 
