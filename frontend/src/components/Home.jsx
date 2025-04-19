@@ -3,12 +3,12 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function Home() { // home page component
+function Home() {
     const [todos, setTodos] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [newTodo, setNewTodo] = useState("");
-    const BASE_URL = `http://${import.meta.env.VITE_BACKEND_URL}`;
+    const BASE_URL = "http://localhost:4001";
 
     useEffect(() => {
         const fetchTodos = async () => {
@@ -70,6 +70,7 @@ function Home() { // home page component
             setError("Failed to Delete Todo");
         }
     };
+
     const navigateTo = useNavigate();
     const logout = async () => {
         try {
@@ -78,7 +79,7 @@ function Home() { // home page component
                 headers: {
                     "Content-Type": "application/json",
                 },
-            }); 
+            });
             toast.success("User logged out successfully");
             navigateTo("/login");
             localStorage.removeItem("jwt");

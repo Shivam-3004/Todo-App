@@ -10,7 +10,7 @@ function signup() { // signup page component
   const [email, setEmail] = useState("");
 
   const navigateTo = useNavigate();
-  const BASE_URL = `http://${import.meta.env.VITE_BACKEND_URL}`;
+  const BASE_URL = "http://localhost:4001";
 
   const handleRegister = async (e) => {
     e.preventDefault();
